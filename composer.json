@@ -1,0 +1,19 @@
+{
+    "name": "samtarling/bigchange-api",
+    "type": "library",
+    "description": "Library to interface with BigChange's Web API",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Sam Tarling",
+            "email": "sam@samtarling.co.uk"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+    "autoload": {
+        "psr-4": {"samtarling\\BigChangeAPI\\": "src/"}
+    }
+}
