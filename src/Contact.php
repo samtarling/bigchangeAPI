@@ -96,64 +96,6 @@ class Contact
     }
 
     /**
-     * Searches for a contact using a given term
-     *
-     * @param string $term The search term
-     * 
-     * @return array PHP array of results
-     */
-    public function searchContact($term)
-    {
-        //
-        // Build request URL
-        $requestURL = $this->apiURL.
-        'action=contactlist&term='.$term;
-
-
-        //$requestURL = urlencode($requestURL);
-
-        var_dump($requestURL);
-
-        // Build cURL
-
-        try {
-            $ch = curl_init();
-        
-            if ($ch === false) {
-                throw new \Exception('failed to initialize');
-            }
-        
-            curl_setopt($ch, CURLOPT_URL, $requestURL);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            $headers = array(
-                'Content-Type:application/json',
-                'Authorization: Basic '. $this->basicAuth,
-                'key:' . $this->apiKey
-            );
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        
-            $content = curl_exec($ch);
-        
-            if ($content === false) {
-                throw new \Exception(curl_error($ch), curl_errno($ch));
-            } else {
-                $content = json_decode($content, true);
-                return $content;
-            }
-        
-            // Close curl handle
-            curl_close($ch);
-        } catch(\Exception $e) {
-            trigger_error(
-                sprintf(
-                    $e->getCode(), $e->getMessage()
-                ),
-                E_USER_ERROR
-            );
-        }
-    }
-
-    /**
      * List BigChange jobs assigned to this contact
      *
      * @param string $startDate The start date (YYYY-MM-DD)
